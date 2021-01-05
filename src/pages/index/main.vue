@@ -1,5 +1,10 @@
 <template>
 	<view class="content">
+		<search></search>
+		
+				<image src="../../static/cart.png" mode="" />
+	
+		
 		<image class="logo" src="/static/logo.png"></image>
 		<view>
 			<text class="title">{{title}}</text>
@@ -8,7 +13,9 @@
 </template>
 
 <script>
+import search from "../../components/search"
 	export default {
+		components:{search},
 		data() {
 			return {
 				title: 'Hello'
