@@ -1,24 +1,35 @@
 <template>
-	<view class="content">
-		<search></search>
-		
-				<image src="../../static/cart.png" mode="" />
-	
-		
-		<image class="logo" src="/static/logo.png"></image>
-		<view>
-			<text class="title">{{title}}</text>
-		</view>
+	<view>
+		<Search></Search>
+		<swiper  class="swiper" :indicator-dots="indicatorDots" 
+		indicator-active-color="#ea4350"   circular="circuar"
+		:autoplay="autoplay" :interval="interval" :duration="duration">
+			<swiper-item>
+				<image src="../../static/cart_selected.png" mode="" />
+			</swiper-item>
+				<swiper-item>
+				<image src="../../static/cart_selected.png" mode="" />
+			</swiper-item>
+			<swiper-item>
+				<image src="../../static/cart_selected.png" mode="" />
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 
 <script>
-import search from "../../components/search"
+import Search from "../../components/search"
 	export default {
-		components:{search},
+		components:{Search},
 		data() {
 			return {
-				title: 'Hello'
+			circular:true,
+		     indicatorDots: true,
+            autoplay: true,
+            interval: 2000,
+            duration: 500
+				
+		
 			}
 		},
 		onLoad() {
@@ -31,26 +42,5 @@ import search from "../../components/search"
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin: 200rpx auto 50rpx auto;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+	
 </style>
