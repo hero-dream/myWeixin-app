@@ -63,6 +63,30 @@
 		  "selectedIconPath": "./static/user_selected.png"
 		}
 	  ]
-	  }
+	  },
+	  "condition": { //模式配置，仅开发期间生效
+		"current": 2, //当前激活的模式（list 的索引项）
+		"list": [{
+				"name": "pages/index/main", //模式名称
+				"path": "pages/index/main", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到。
+			},
+			{
+				"name": "pages/category/main",
+				"path": "pages/category/main",
+				"query": ""
+			},
+			{
+				"name": "pages/cart/main",
+				"path": "pages/cart/main",
+				"query": ""
+			},
+			{
+				"name": "pages/user/main",
+				"path": "pages/user/main",
+				"query": ""
+			}
+		]
+	}
 }
 
