@@ -3,10 +3,10 @@
     <Search></Search>
     <view class="category">
       <scroll-view scroll-y class="category-left">
-        <view class="item-left"  v-for="item in categoryList" :key="item.cat_id">{{item.cat_name}}</view>
+        <view class="item-left" :class="isActive===index? 'active': '' " @tap="changeTabs(index)"  v-for="(item,index) in categoryList" :key="item.cat_id">{{item.cat_name}}</view>
       </scroll-view>
       <scroll-view scroll-y class="category-right">
-        <view class="item-right">右边</view>
+        <view class="item-right"></view>
       </scroll-view>
     </view>
   </view>
@@ -18,9 +18,9 @@ export default {
   components: { Search },
   data(){
     return{
-   
+     isActive:0,
       categoryList:[],
-   
+      // categoryRight:[]
     }
    
   },
@@ -43,18 +43,21 @@ export default {
     }
     
     )
-  
+    // this.categoryRight =categoryData[0].children
    
    
        }
      });
+     },
+     changeTabs(index){
+   this.isActive=index
      }
      
    }
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .cats {
   .category {
     margin: 90rpx 0 0 0;
@@ -64,6 +67,16 @@ export default {
       height: calc(100vh - 90rpx);
       background-color: #f3f3f3;
       color: #909090;
+      .item-left{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100rpx;
+        &.active{
+          color: red;
+          border-left: red solid 5rpx;
+        }
+      }
     }
     .category-right {
       flex: 5;
