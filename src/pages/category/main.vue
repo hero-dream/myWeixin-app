@@ -3,10 +3,10 @@
     <Search></Search>
     <view class="category">
       <scroll-view scroll-y class="category-left">
-        <view>左边</view>
+        <view class="item-left"  v-for="item in categoryList" :key="item.cat_id">{{item.cat_name}}</view>
       </scroll-view>
       <scroll-view scroll-y class="category-right">
-        <view>右边</view>
+        <view class="item-right">右边</view>
       </scroll-view>
     </view>
   </view>
@@ -16,6 +16,41 @@
 import Search from "../../components/search";
 export default {
   components: { Search },
+  data(){
+    return{
+   
+      categoryList:[],
+   
+    }
+   
+  },
+   onLoad(){
+     this.getCats()
+ 
+
+   },
+   methods:{
+     getCats(){
+           uni.request({
+       url: 'https://api-hmugo-web.itheima.net/api/public/v1/categories',
+       success: (res) => {
+         console.log(res.data);
+         const categoryData = res.data.message;
+    this.categoryList = categoryData.map(item=>{
+      return{
+     cat_name:item.cat_name
+      }
+    }
+    
+    )
+  
+   
+   
+       }
+     });
+     }
+     
+   }
 };
 </script>
 
@@ -33,7 +68,7 @@ export default {
     .category-right {
       flex: 5;
       height: calc(100vh - 90rpx);
-      background-color: pink;
+  
     }
   }
 }
