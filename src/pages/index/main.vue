@@ -143,7 +143,7 @@ overflow: hidden;
   width: 232rpx;
   height: 188rpx;
   border-left: 15rpx solid #ffffff;
-    border-bottom:11rpx solid #ffffff;
+    border-bottom:11.5rpx solid #ffffff;
 }
     .navigator_img {
 width: 100%;
