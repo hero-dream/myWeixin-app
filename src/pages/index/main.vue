@@ -18,11 +18,30 @@
         <image class="image" :src="item.image_src" mode="aspectFill" />
       </swiper-item>
     </swiper>
+
     <view class="nav">
-      <navigator class="navData" v-for="item in navData" :key="item.index">
+      <navigator class="navData"
+       v-for="item in navData" :key="item.index"   hover-class="none" >
         <image class="img" :src="item.image_src" mode="aspectFit" />
       </navigator>
     </view>
+<view class="floor_list" 
+v-for="(item,index) in floorList" :key="index">
+<view class="floor_title">
+	<image class="imgs" :src="item.floor_title.image_src" mode="" />
+</view>
+<view class="floor_floors">
+	<navigator class="navigator"
+  :url="item2.navigator_src"
+  hover-class="none"
+   v-for="item2 in item.product_list" :key="item2.index"
+
+  > 
+<image class="navigator_img" :src="item2.image_src" :mode="index2===0?'widthFix':'scaleToFill'"/>
+	</navigator>
+</view>
+</view>
+
   </view>
 </template>
 
@@ -33,7 +52,8 @@ export default {
   data() {
     return {
       swiperData: [],
-      navData: [],
+	  navData: [],
+	  floorList:[],
       circular: true,
       indicatorDots: true,
       autoplay: true,
@@ -57,7 +77,15 @@ export default {
         console.log(res.data);
         this.navData = res.data.message;
       },
-    });
+	});
+	
+	uni.request({
+		url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata', 
+		success: (res) => {
+			console.log(res.data);
+			this.floorList = res.data.message;
+		}
+	});
   },
   methods: {},
 };
@@ -65,7 +93,7 @@ export default {
 
 <style lang="less" scoped>
 .content {
-  margin: 100rpx 0 0 0;
+  margin: 90rpx 0 0 0;
   .swiper {
     height: 340rpx;
     .swiper-item {
@@ -91,5 +119,38 @@ export default {
       }
     }
   }
+.floor_list {
+  margin: 43rpx 0 10rpx 0;
+  .floor_title {
+  .imgs {
+height:59rpx ;
+  width: 100%;
+    }
+  }
+  .floor_floors {
+         margin:0 12rpx;
+overflow: hidden;
+
+  .navigator {
+ float: left;
+
+  &:first-child{
+     width: 232rpx;
+     height: 386rpx;
+  }
+
+&:nth-last-child(-n+4){
+  width: 232rpx;
+  height: 188rpx;
+  border-left: 15rpx solid #ffffff;
+    border-bottom:11rpx solid #ffffff;
+}
+    .navigator_img {
+width: 100%;
+height: 100%;
+      }
+    }
+  }
+}
 }
 </style>
