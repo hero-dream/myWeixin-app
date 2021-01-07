@@ -13,7 +13,7 @@ export default {
 <style>
 .search{
   padding: 10rpx   25rpx;
-  position: fixed;/*悬停搜索框的关键样式*/
+  position: fixed;
   top: 0px;
   left: 0;
   width: 100%;
