@@ -25,11 +25,11 @@
           </view>
           <view
             class="goods_list">
-            <view class="goods-item"   v-for="item2 in item1.children"
+            <navigator hover-class="none" :url="`/pages/goods_list/main?cid=${item2.cat_id}`"  class="goods-item" v-for="item2 in item1.children"
             :key="item2.cat_id">
               <image class="goods-img" :src="item2.cat_icon" mode="widthFix" />
               <text class="text">{{ item2.cat_name }}</text>
-            </view>
+            </navigator>
           </view>
         </view>
       </scroll-view>
@@ -63,6 +63,7 @@ export default {
           this.categoryList = categoryData.map((item) => {
             return {
               cat_name: item.cat_name,
+              cat_id:item.cat_id,
             };
           });
           this.categoryRight = categoryData[0].children;
