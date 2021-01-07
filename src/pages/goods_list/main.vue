@@ -10,7 +10,7 @@
   </view>
   <view class="goodRight">
     <view class="name">{{item.goods_name}}</view>
-    <view class="price">{{item.goods_price}}</view>
+    <view class="price">￥{{item.goods_price}}</view>
 
   </view>
 </view>
