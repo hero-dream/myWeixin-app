@@ -24,6 +24,13 @@
 				"navigationBarTitleText": "个人中心"
 			}
 		}
+		,
+		{
+			"path": "pages/goods_list/main",
+			"style": {
+				"navigationBarTitleText": "商品列表"
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

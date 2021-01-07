@@ -1,5 +1,5 @@
 <template>
-  <view>授权</view>
+  <view>商品列表</view>
 </template>
 
 <script>
