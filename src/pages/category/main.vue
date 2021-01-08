@@ -23,10 +23,14 @@
             <text> {{ item1.cat_name }}</text>
             <text class="item-text">/</text>
           </view>
-          <view
-            class="goods_list">
-            <navigator hover-class="none" :url="`/pages/goods_list/main?cid=${item2.cat_id}`"  class="goods-item" v-for="item2 in item1.children"
-            :key="item2.cat_id">
+          <view class="goods_list">
+            <navigator
+              hover-class="none"
+              :url="`/pages/goods_list/main?cid=${item2.cat_id}`"
+              class="goods-item"
+              v-for="item2 in item1.children"
+              :key="item2.cat_id"
+            >
               <image class="goods-img" :src="item2.cat_icon" mode="widthFix" />
               <text class="text">{{ item2.cat_name }}</text>
             </navigator>
@@ -53,20 +57,29 @@ export default {
     // this.getCats();
     // 这里取出数据
     // 1.当本地没有数据时，判断，没有数据就发送请求
-    const categoryData=uni.getStorageSync('categoryData') || []
-    if(categoryData.length === 0){
-   this.getCats();
-    }else{
+    const categoryData = uni.getStorageSync("categoryData") || [];
+    if (categoryData.length === 0) {
+      this.getCats();
+    } else {
       // 2.当本地存储有数据时，但是是无效的
-      const now =now.Date() //获取当前的时间戳
-      const old =uni.getStorageSync('categoryTime') //旧的时间戳
- 
-if(now-old>=60 * 1000){
-       console.log(now-old>=60 * 1000);
-    this.getCats();
-}
+      const now = now.Date(); //获取当前的时间戳
+      const old = uni.getStorageSync("categoryTime"); //旧的时间戳
+
+      if (now - old >= 60 * 1000) {
+        console.log(now - old >= 60 * 1000);
+        this.getCats();
+      } else {
+        // 2.1当本地数据有效时
+        this.categoryData = categoryData;
+        this.categoryList = categoryData.map((item) => {
+          return {
+            cat_name: item.cat_name,
+            cat_id: item.cat_id,
+          };
+        });
+        this.categoryRight = categoryData[0].children;
+      }
     }
- 
   },
   methods: {
     getCats() {
@@ -77,14 +90,14 @@ if(now-old>=60 * 1000){
           const categoryData = res.data.message;
           this.categoryData = categoryData;
           // 将数据存入本地
-          uni.setStorageSync('categoryData', categoryData) //存数据
-          uni.setStorageSync('categoryTime', Date.now())//存储当前时间戳，用于校验
+          uni.setStorageSync("categoryData", categoryData); //存数据
+          uni.setStorageSync("categoryTime", Date.now()); //存储当前时间戳，用于校验
           // uni.getStorageSync('categoryData') //取数据
 
           this.categoryList = categoryData.map((item) => {
             return {
               cat_name: item.cat_name,
-              cat_id:item.cat_id,
+              cat_id: item.cat_id,
             };
           });
           this.categoryRight = categoryData[0].children;
@@ -135,13 +148,13 @@ if(now-old>=60 * 1000){
           }
         }
         .goods_list {
-display: flex;
-flex-wrap: wrap;
+          display: flex;
+          flex-wrap: wrap;
           .goods-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             width: 33.33%;
 
             .goods-img {
