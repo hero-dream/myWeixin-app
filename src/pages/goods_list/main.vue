@@ -1,96 +1,57 @@
 <template>
   <view class="content">
-  <Search></Search>
-  <view class="goodsTab">
-<GoodsTab></GoodsTab>
-</view>
-<navigator hover-class="none" :url="`/pages/goods_detail/main?goods_id=${item.goods_id}`" class="goodsList" v-for="item in goodsData" :key="item.index">
-  <view class="goodsLeft"> 
-<image class="images" :src="item.goods_big_logo" mode="" />
-  </view>
-  <view class="goodRight">
-    <view class="name">{{item.goods_name}}</view>
-    <view class="price">￥{{item.goods_price}}</view>
-
-  </view>
-</navigator>
-
+    <Search></Search>
+    <view class="goodsTab">
+      <GoodsTab></GoodsTab>
+    </view>
+    <Gooditem
+      v-for="item in goodsData"
+      :key="item.index"
+      :item="item"
+    ></Gooditem>
   </view>
 </template>
 
 <script>
-import Search from "../../components/search"
-import GoodsTab from "../../components/goodsTab"
+import Search from "../../components/search";
+import GoodsTab from "../../components/goodsTab";
+import Gooditem from "../../components/goodItem";
 export default {
-  components:{GoodsTab,Search},
-data(){
-  return{
-    goodsData:[],
-    cid:'',
-        pagenum:1,
-        pagesize:20
-  }
-},
-  onLoad({cid}){
-    this.cid =cid
-    this.getDoodsList()
-
+  components: { GoodsTab, Search, Gooditem },
+  data() {
+    return {
+      goodsData: [],
+      cid: "",
+      pagenum: 1,
+      pagesize: 20,
+    };
   },
-methods:{
-  getDoodsList(){
-    uni.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/goods/search', 
-      data: {
-     cid:this.cid,
-     pagenum:this.pagenum,
-     pagesize:this.pagesize
-      },
-      success: (res) => {
-        console.log(res.data.message.goods);
-        this.goodsData = res.data.message.goods;
-      }
-    });
-  }
-}
-}
+  onLoad({ cid }) {
+    this.cid = cid;
+    this.getDoodsList();
+  },
+  methods: {
+    getDoodsList() {
+      uni.request({
+        url: "https://api-hmugo-web.itheima.net/api/public/v1/goods/search",
+        data: {
+          cid: this.cid,
+          pagenum: this.pagenum,
+          pagesize: this.pagesize,
+        },
+        success: (res) => {
+          console.log(res.data.message.goods);
+          this.goodsData = res.data.message.goods;
+        },
+      });
+    },
+  },
+};
 </script>
 <style lang="less" scoped>
-.content{
-  .goodsTab{
-    margin: 90rpx 0 0 0 ;
-  }
-  .goodsList{
-    margin-top: 10rpx;
-    display: flex;
-    padding-left: 22rpx;
-    padding-bottom: 5rpx;
-    width: 698rpx;
-    height: 209rpx;
-    .goodsLeft{
-
-.images{
-  width: 210rpx;
-  height: 210rpx;
-}
-    }
-    .goodRight{
-    margin-left: 20rpx;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-      .name{
-        margin: 20rpx 0 0 0;
-        font-size: 26rpx;
-
-      }
-      .price{
-        color: red;
-         font-size: 26rpx;
-
-      }
-
-    }
-
+.content {
+  .goodsTab {
+    margin: 90rpx 0 0 0;
   }
 }
 </style>
