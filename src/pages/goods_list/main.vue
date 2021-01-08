@@ -4,7 +4,7 @@
   <view class="goodsTab">
 <GoodsTab></GoodsTab>
 </view>
-<view class="goodsList" v-for="item in goodsData" :key="item.index">
+<navigator hover-class="none" :url="`/pages/goods_detail/main?goods_id=${item.goods_id}`" class="goodsList" v-for="item in goodsData" :key="item.index">
   <view class="goodsLeft"> 
 <image class="images" :src="item.goods_big_logo" mode="" />
   </view>
@@ -13,7 +13,7 @@
     <view class="price">￥{{item.goods_price}}</view>
 
   </view>
-</view>
+</navigator>
 
   </view>
 </template>
@@ -46,7 +46,7 @@ methods:{
      pagesize:this.pagesize
       },
       success: (res) => {
-        console.log(res.data.message);
+        console.log(res.data.message.goods);
         this.goodsData = res.data.message.goods;
       }
     });
