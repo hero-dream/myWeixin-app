@@ -51,12 +51,20 @@ export default {
   },
   onLoad() {
     // this.getCats();
-    这里取出数据
+    // 这里取出数据
     // 1.当本地没有数据时，判断，没有数据就发送请求
     const categoryData=uni.getStorageSync('categoryData') || []
-    
     if(categoryData.length === 0){
    this.getCats();
+    }else{
+      // 2.当本地存储有数据时，但是是无效的
+      const now =now.Date() //获取当前的时间戳
+      const old =uni.getStorageSync('categoryTime') //旧的时间戳
+ 
+if(now-old>=60 * 1000){
+       console.log(now-old>=60 * 1000);
+    this.getCats();
+}
     }
  
   },
@@ -70,7 +78,7 @@ export default {
           this.categoryData = categoryData;
           // 将数据存入本地
           uni.setStorageSync('categoryData', categoryData) //存数据
-          uni.setStorageSync('categoryData', Date.now())//存储当前时间戳，用于校验
+          uni.setStorageSync('categoryTime', Date.now())//存储当前时间戳，用于校验
           // uni.getStorageSync('categoryData') //取数据
 
           this.categoryList = categoryData.map((item) => {
