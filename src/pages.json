@@ -99,6 +99,12 @@
 				"path": "pages/user/main",
 				"query": ""
 			}
+			,
+			{
+				"name": "pages/goods_list/main",
+				"path": "pages/goods_list/main",
+				"query": ""
+			}
 		]
 	}
 }
