@@ -54,6 +54,7 @@
 
 <script>
 import Search from "../../components/search";
+import { homeBanner, homeCatitems, homeFloordata } from "@/api";
 export default {
   components: { Search },
   data() {
@@ -68,31 +69,36 @@ export default {
       duration: 1500,
     };
   },
-  onLoad() {
-    uni.request({
-      url: "https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata",
-      success: (res) => {
-        console.log(res.data);
-        this.swiperData = res.data.message;
-        // this.text = 'request success';
-      },
-    });
+  async onLoad() {
+    const res = await homeBanner();
+    this.swiperData = res.data.message;
+    // uni.request({
+    //   url: "https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata",
+    //   success: (res) => {
+    //     console.log(res.data);
 
-    uni.request({
-      url: "https://api-hmugo-web.itheima.net/api/public/v1/home/catitems",
-      success: (res) => {
-        console.log(res.data);
-        this.navData = res.data.message;
-      },
-    });
+    //     // this.text = 'request success';
+    //   },
+    // });
+    const res2 = await homeCatitems();
+    this.navData = res2.data.message;
 
-    uni.request({
-      url: "https://api-hmugo-web.itheima.net/api/public/v1/home/floordata",
-      success: (res) => {
-        console.log(res.data);
-        this.floorList = res.data.message;
-      },
-    });
+    // uni.request({
+    //   url: "https://api-hmugo-web.itheima.net/api/public/v1/home/catitems",
+    //   success: (res) => {
+    //     console.log(res.data);
+    //     this.navData = res.data.message;
+    //   },
+    // });
+    const res3 = await homeFloordata();
+    this.floorList = res3.data.message;
+    //   uni.request({
+    //     url: "https://api-hmugo-web.itheima.net/api/public/v1/home/floordata",
+    //     success: (res) => {
+    //       console.log(res.data);
+    //       this.floorList = res.data.message;
+    //     },
+    //   });
   },
   methods: {},
 };
