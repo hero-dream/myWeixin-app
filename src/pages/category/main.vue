@@ -50,7 +50,15 @@ export default {
     };
   },
   onLoad() {
-    this.getCats();
+    // this.getCats();
+    这里取出数据
+    // 1.当本地没有数据时，判断，没有数据就发送请求
+    const categoryData=uni.getStorageSync('categoryData') || []
+    
+    if(categoryData.length === 0){
+   this.getCats();
+    }
+ 
   },
   methods: {
     getCats() {
@@ -60,6 +68,10 @@ export default {
           console.log(res.data);
           const categoryData = res.data.message;
           this.categoryData = categoryData;
+          // 将数据存入本地
+          uni.setStorageSync('categoryData', categoryData) //存数据
+          // uni.getStorageSync('categoryData') //取数据
+
           this.categoryList = categoryData.map((item) => {
             return {
               cat_name: item.cat_name,

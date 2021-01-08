@@ -60,6 +60,7 @@ methods:{
     margin: 90rpx 0 0 0 ;
   }
   .goodsList{
+    margin-top: 10rpx;
     display: flex;
     padding-left: 22rpx;
     padding-bottom: 5rpx;
