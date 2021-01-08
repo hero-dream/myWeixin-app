@@ -70,6 +70,7 @@ export default {
           this.categoryData = categoryData;
           // 将数据存入本地
           uni.setStorageSync('categoryData', categoryData) //存数据
+          uni.setStorageSync('categoryData', Date.now())//存储当前时间戳，用于校验
           // uni.getStorageSync('categoryData') //取数据
 
           this.categoryList = categoryData.map((item) => {
