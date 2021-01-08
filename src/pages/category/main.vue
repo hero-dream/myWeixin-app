@@ -62,9 +62,8 @@ export default {
       this.getCats();
     } else {
       // 2.当本地存储有数据时，但是是无效的
-      const now = now.Date(); //获取当前的时间戳
+      const now = Date.now(); //获取当前的时间戳
       const old = uni.getStorageSync("categoryTime"); //旧的时间戳
-
       if (now - old >= 60 * 1000) {
         console.log(now - old >= 60 * 1000);
         this.getCats();
