@@ -24,8 +24,12 @@
     <view class="goods_name">
       {{ goods_name}}
     </view>
-    
+    <view class="border"></view>
+
+        <rich-text :nodes="goods_introduce" class=" goods_introduce"></rich-text>
+  
   </view>
+
    
 </template>
 
@@ -103,8 +107,15 @@ export default {
     }
   }
   .goods_name{
-    padding: 0 20rpx;
+    padding:  0 20rpx 20rpx 20rpx ;
     font-size: 30rpx;
+  
+  }
+  .border{
+    width: 100%;
+    height: 10rpx;
+    
+    background-color: #f9f9f9;
   }
 }
 </style>
