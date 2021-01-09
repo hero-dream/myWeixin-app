@@ -1,5 +1,5 @@
 
-import { request } from "../utils/request"
+import { request } from "@/utils/request"
 // 轮廓图
 export const homeBanner = () => {
     return request({
