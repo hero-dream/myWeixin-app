@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-    <view class="goodsList">
+    <navigator :url="`/pages/goods_detail/main?goods_id=${item.goods_id}`" class="goodsList">
       <view class="goodsLeft">
         <image class="images" :src="item.goods_big_logo" mode="" />
       </view>
@@ -8,7 +8,7 @@
         <view class="name">{{ item.goods_name }}</view>
         <view class="price">￥{{ item.goods_price }}</view>
       </view>
-    </view>
+    </navigator>
   </view>
 </template>
 
