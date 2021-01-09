@@ -25,9 +25,10 @@
       {{ goods_name}}
     </view>
     <view class="border"></view>
-
-        <rich-text :nodes="goods_introduce" class=" goods_introduce"></rich-text>
-  
+    <view class="goods_introduce" >
+      <view class="text">图片详情</view>
+    <rich-text :nodes="goods_introduce"></rich-text>
+  </view>
   </view>
 
    
@@ -113,9 +114,16 @@ export default {
   }
   .border{
     width: 100%;
-    height: 10rpx;
-    
+    height: 20rpx;
     background-color: #f9f9f9;
+  }
+  .goods_introduce{
+    .text{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20rpx  0 ;
+    }
   }
 }
 </style>
