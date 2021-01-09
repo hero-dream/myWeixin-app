@@ -4,12 +4,10 @@
     <view class="goodsTab">
       <GoodsTab :tabData="tabData"></GoodsTab>
     </view>
-    <Gooditem
-      v-for="item in goods"
-      :key="item.index"
-      :item="item"
-    ></Gooditem>
+    <Gooditem v-for="item in goods" :key="item.index" :item="item"></Gooditem>
+    
   </view>
+ 
 </template>
 
 <script>
@@ -20,23 +18,31 @@ export default {
   components: { GoodsTab, Search, Gooditem },
   data() {
     return {
-        tabData: [
+      tabData: [
         { id: 0, text: "综合" },
         { id: 1, text: "销量" },
         { id: 2, text: "价格" },
       ],
-      goods: [],
       cid: "",
       pagenum: 1,
       pagesize: 10,
+      goods: [],
+      hasMore: true, //是否加载更多数据
     };
   },
   onLoad({ cid }) {
-    this.cid = cid ;
-    this.getDoodsList();
+    this.cid = cid ||999;
+    this.getGoodsList();
+  },
+  onReachBottom() {
+    if(this.hasMore === true) {
+      console.log("触底了");
+      this.pagenum++; //页码加1
+      this.getGoodsList();
+    }
   },
   methods: {
-    getDoodsList() {
+    getGoodsList() {
       uni.request({
         url: "https://api-hmugo-web.itheima.net/api/public/v1/goods/search",
         data: {
@@ -47,16 +53,16 @@ export default {
         success: (res) => {
           console.log(res.data.message);
           // this.goods = res.data.message;
-          const {goods} =res.data.message
-          this.goods=[...this.goods,...goods]  //...为展开运算符    this.goods为旧的数据，goods为新的数据
+          const { goods, total } = res.data.message;
+          this.goods = [...this.goods, ...goods]; //...为展开运算符    this.goods为旧的数据，goods为新的数据
+          this.total=total
+          if (total === this.goods.length) {
+            // 当总长度等于当前的页数，会触发
+            this.hasMore = false;
+          }
         },
       });
     },
-    onReachBottom(){
-      console.log('触底了');
-this.pagenum++  //页码加1
- this.getDoodsList();
-    }
   },
 };
 </script>
