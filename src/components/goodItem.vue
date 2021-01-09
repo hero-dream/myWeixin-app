@@ -1,8 +1,8 @@
 <template>
   <view class="content">
-    <navigator :url="`/pages/goods_detail/main?goods_id=${item.goods_id}`" class="goodsList">
+    <navigator hover-class="none" :url="`/pages/goods_detail/main?goods_id=${item.goods_id}`" class="goodsList">
       <view class="goodsLeft">
-        <image class="images" :src="item.goods_big_logo" mode="" />
+        <image lazy-load  class="images" :src="item.goods_big_logo" mode="aspectFit" />
       </view>
       <view class="goodRight">
         <view class="name">{{ item.goods_name }}</view>
