@@ -38,8 +38,8 @@
           class="navigator"
           :url="item2.navigator_src"
           hover-class="none"
-          v-for="item2 in item.product_list"
-          :key="item2.index"
+          v-for="(item2,index2) in item.product_list"
+          :key="index2"
         >
           <image
             class="navigator_img"
