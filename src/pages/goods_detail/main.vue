@@ -7,7 +7,11 @@
         :indicator-dots="indicatorDots"
         indicator-active-color="#2dc2da"
       >
-        <swiper-item class="swiper" v-for="(item,index) in pics" :key="item.pics_id">
+        <swiper-item
+          class="swiper"
+          v-for="(item, index) in pics"
+          :key="item.pics_id"
+        >
           <image
             class="item_image"
             :src="item.pics_big_url"
@@ -18,20 +22,18 @@
       </swiper>
     </view>
 
-   <view class="goods_price">
-      {{goods_price}}
+    <view class="goods_price">
+      {{ goods_price }}
     </view>
     <view class="goods_name">
-      {{ goods_name}}
+      {{ goods_name }}
     </view>
     <view class="border"></view>
-    <view class="goods_introduce" >
+    <view class="goods_introduce">
       <view class="text">图片详情</view>
-    <rich-text :nodes="goods_introduce"></rich-text>
+      <rich-text :nodes="goods_introduce"></rich-text>
+    </view>
   </view>
-  </view>
-
-   
 </template>
 
 <script>
@@ -62,27 +64,28 @@ export default {
         goods_name,
       } = res.data.message;
       this.pics = pics;
-   
-      this.goods_price = goods_price
-      this.goods_introduce = goods_introduce;
+
+      this.goods_price = goods_price;
+      // replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串
+      this.goods_introduce = goods_introduce.replace(/<img/g,'<img class="introduce_img"');
       this.goods_name = goods_name;
       console.log(res.data.message);
-            console.log(goods_price);
-    
+
     },
-      swiperImg(index){
-        const urls =this.pics.map(item=>item.pics_big)//映射出图片，将其转成字符串
-        console.log(urls);
-          uni.previewImage({
-  current:index, // 当前显示图片的http链接
-  urls // 需要预览的图片http链接列表
-})
-      }
+    // 图片放大功能
+    swiperImg(index) {
+      const urls = this.pics.map((item) => item.pics_big); //映射出图片，将其转成字符串
+      console.log(urls);
+      uni.previewImage({
+        current: index, // 当前显示图片的http链接
+        urls, // 需要预览的图片http链接列表
+      });
+    },
   },
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .content {
   .content_swiper {
     display: flex;
@@ -92,7 +95,7 @@ export default {
       height: 750rpx;
     }
   }
-  .goods_price{
+  .goods_price {
     width: 50rpx;
     height: 100rpx;
     text-align: center;
@@ -101,29 +104,31 @@ export default {
     font-weight: 700;
     font-size: 36rpx;
     padding: 0 20rpx;
-    &::before{
+    &::before {
       content: "￥";
       font-size: 25rpx;
       color: red;
     }
   }
-  .goods_name{
-    padding:  0 20rpx 20rpx 20rpx ;
+  .goods_name {
+    padding: 0 20rpx 20rpx 20rpx;
     font-size: 30rpx;
-  
   }
-  .border{
+  .border {
     width: 100%;
     height: 20rpx;
     background-color: #f9f9f9;
   }
-  .goods_introduce{
-    .text{
+  .goods_introduce {
+    .text {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20rpx  0 ;
+      padding: 20rpx 0;
     }
+  }
+  .introduce_img{
+    display: block;
   }
 }
 </style>
