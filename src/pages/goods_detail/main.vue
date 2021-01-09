@@ -1,15 +1,12 @@
 <template>
   <view class="content">
 
-    <view class="content_in" >
+    <view class="content_swiper" >
       <swiper class="swiper" circular :indicator-dots="indicatorDots" indicator-active-color="#2dc2da" >
         <swiper-item  v-for="item in pics" :key="item.pics_id">
-   <image class="item_image" :src="item.pics_big_url" mode="aspectFit"/>
+   <image class="item_image" :src="item.pics_big_url" mode="aspectFill"/>
         </swiper-item>
       </swiper>
-      <view class="name">
-
-      </view>
     </view>
   </view>
 </template>
@@ -43,12 +40,15 @@ this.pics=pics
 
 <style lang="less" scoped>
 .content {
-  .content_in {
+  .content_swiper {
 display: flex;
-  .swiper,.item_image{
-    width: 750rpx;
+  .swiper{
+    width: 100%;
     height: 500rpx;
-
+  }
+  .item_image{
+    width: 100%;
+    height: 500rpx;
   }
     
   }
