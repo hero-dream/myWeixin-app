@@ -42,6 +42,10 @@ export default {
   },
   methods: {
     getGoodsList() {
+      uni.showLoading({
+  title: '加载中',
+})
+
       uni.request({
         url: "https://api-hmugo-web.itheima.net/api/public/v1/goods/search",
         data: {
@@ -59,6 +63,7 @@ export default {
             // 当总长度等于当前的页数，会触发
             this.hasMore = false;
           }
+           uni.hideLoading()
         },
       });
     },
