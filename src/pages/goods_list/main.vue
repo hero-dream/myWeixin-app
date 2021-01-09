@@ -2,7 +2,7 @@
   <view class="content">
     <Search></Search>
     <view class="goodsTab">
-      <GoodsTab></GoodsTab>
+      <GoodsTab :tabData="tabData"></GoodsTab>
     </view>
     <Gooditem
       v-for="item in goodsData"
@@ -20,6 +20,11 @@ export default {
   components: { GoodsTab, Search, Gooditem },
   data() {
     return {
+        tabData: [
+        { id: 0, text: "综合" },
+        { id: 1, text: "销量" },
+        { id: 2, text: "价格" },
+      ],
       goodsData: [],
       cid: "",
       pagenum: 1,
