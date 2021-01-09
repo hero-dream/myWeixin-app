@@ -5,7 +5,7 @@
       <GoodsTab :tabData="tabData"></GoodsTab>
     </view>
     <Gooditem
-      v-for="item in goodsData"
+      v-for="item in goods"
       :key="item.index"
       :item="item"
     ></Gooditem>
@@ -25,14 +25,14 @@ export default {
         { id: 1, text: "销量" },
         { id: 2, text: "价格" },
       ],
-      goodsData: [],
+      goods: [],
       cid: "",
       pagenum: 1,
-      pagesize: 20,
+      pagesize: 10,
     };
   },
   onLoad({ cid }) {
-    this.cid = cid;
+    this.cid = cid ;
     this.getDoodsList();
   },
   methods: {
@@ -45,11 +45,14 @@ export default {
           pagesize: this.pagesize,
         },
         success: (res) => {
-          console.log(res.data.message.goods);
-          this.goodsData = res.data.message.goods;
+          console.log(res.data.message);
+          // this.goods = res.data.message;
+          const {goods} =res.data.message
+          this.goods=goods
         },
       });
     },
+
   },
 };
 </script>
