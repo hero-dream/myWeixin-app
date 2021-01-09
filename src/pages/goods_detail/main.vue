@@ -1,24 +1,37 @@
 <template>
   <view class="content">
-
-    <view class="content_swiper" >
-      <swiper class="swiper" circular :indicator-dots="indicatorDots" indicator-active-color="#2dc2da" >
-        <swiper-item class="swiper"  v-for="item in pics" :key="item.pics_id">
-   <image class="item_image" :src="item.pics_big_url" mode="aspectFill"/>
+    <view class="content_swiper">
+      <swiper
+        class="swiper"
+        circular
+        :indicator-dots="indicatorDots"
+        indicator-active-color="#2dc2da"
+      >
+        <swiper-item class="swiper" v-for="(item,index) in pics" :key="item.pics_id">
+          <image
+            class="item_image"
+            :src="item.pics_big_url"
+            mode="aspectFill"
+            @tap="swiperImg(index)"
+          />
         </swiper-item>
       </swiper>
     </view>
+ 
   </view>
 </template>
 
 <script>
-import {getDetail} from "@/api"
+import { getDetail } from "@/api";
 export default {
   data() {
     return {
-     indicatorDots:true,
+      indicatorDots: true,
       goods_id: "",
       pics: [],
+      goods_price: "",
+      goods_introduce: "",
+      goods_name: "",
     };
   },
 
@@ -27,13 +40,31 @@ export default {
     this.getDetail();
   },
   methods: {
-async  getDetail() {
-const res =await getDetail({goods_id: this.goods_id})
-const { pics} =res.data.message
-this.pics=pics
- console.log(res.data);
- console.log(pics);
+    async getDetail() {
+      const res = await getDetail({ goods_id: this.goods_id });
+      const {
+        pics,
+        goods_price,
+        goods_introduce,
+        goods_name,
+      } = res.data.message;
+      this.pics = pics;
+   
+      this.goods_price = goods_price
+      this.goods_introduce = goods_introduce;
+      this.goods_name = goods_name;
+      console.log(res.data.message);
+            console.log(goods_price);
+    
     },
+      swiperImg(index){
+        const urls =this.pics.map(item=>item.pics_big)//映射出图片，将其转成字符串
+        console.log(urls);
+          uni.previewImage({
+  current:index, // 当前显示图片的http链接
+  urls // 需要预览的图片http链接列表
+})
+      }
   },
 };
 </script>
@@ -41,14 +72,12 @@ this.pics=pics
 <style lang="less" scoped>
 .content {
   .content_swiper {
-display: flex;
-  .swiper,
-   .item_image{
-    width: 100%;
-    height: 750rpx;
-  }
- 
-    
+    display: flex;
+    .swiper,
+    .item_image {
+      width: 100%;
+      height: 750rpx;
+    }
   }
 }
 </style>
