@@ -48,11 +48,15 @@ export default {
           console.log(res.data.message);
           // this.goods = res.data.message;
           const {goods} =res.data.message
-          this.goods=goods
+          this.goods=[...this.goods,...goods]  //...为展开运算符    this.goods为旧的数据，goods为新的数据
         },
       });
     },
-
+    onReachBottom(){
+      console.log('触底了');
+this.pagenum++  //页码加1
+ this.getDoodsList();
+    }
   },
 };
 </script>
