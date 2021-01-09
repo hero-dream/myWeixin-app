@@ -40,6 +40,17 @@ export default {
       this.getGoodsList();
     }
   },
+  onPullDownRefresh(){
+console.log('123');
+  this.pagenum=1,
+  this.goods=[],
+  this.hasMore=true,
+  this.getGoodsList()
+//   setTimeout(function () {
+//   uni.stopPullDownRefresh
+// }, 1000)
+
+  },
   methods: {
     getGoodsList() {
       uni.showLoading({
