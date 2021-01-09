@@ -17,8 +17,16 @@
         </swiper-item>
       </swiper>
     </view>
- 
+
+   <view class="goods_price">
+      {{goods_price}}
+    </view>
+    <view class="goods_name">
+      {{ goods_name}}
+    </view>
+    
   </view>
+   
 </template>
 
 <script>
@@ -78,6 +86,25 @@ export default {
       width: 100%;
       height: 750rpx;
     }
+  }
+  .goods_price{
+    width: 50rpx;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    color: red;
+    font-weight: 700;
+    font-size: 36rpx;
+    padding: 0 20rpx;
+    &::before{
+      content: "￥";
+      font-size: 25rpx;
+      color: red;
+    }
+  }
+  .goods_name{
+    padding: 0 20rpx;
+    font-size: 30rpx;
   }
 }
 </style>
