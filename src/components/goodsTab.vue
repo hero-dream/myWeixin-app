@@ -1,44 +1,46 @@
 <template>
   <view class="content">
-      <view class="content_in"  >
-          <view class="text">综合</view>
-          <view class="text">销量</view>
-          <view class="text">价格</view>
-      </view>
+    <view class="content_in" 
+        @tap="getGoodsTab(index)"
+    :class="{active:isActive === index}"
+    v-for="(item, index) in tabData"
+     :key="item.id">
+      {{ item.text }}
+    </view>
   </view>
 </template>
 
 <script>
 export default {
- data(){ 
-    return{
-    }
-     },  
-methods:{}
-}
+  props: ["tabData"],
+  data() {
+    return {
+      isActive: 0,
+    };
+  },
+  methods: {
+    getGoodsTab(index) {
+      this.isActive=index
+    },
+  },
+};
 </script>
 
 <style lang="less">
-.content{
-    height:88rpx;
-    width: 100%;
-    // background-color: #f3f3f3;
-    border-bottom: red 2rpx solid;
- 
-
-    .content_in{
-           display: flex;
-       align-items: center;
-           height:88rpx;
-           line-height: 88rpx;
-           justify-content:space-around;
-         
-          
-        .text{
-            color: #6b6b6b;
-          
-
-        }
+.content {
+  display: flex;
+  justify-content: space-evenly;
+  .content_in {
+    width: 184rpx;
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4rpx solid transparent;
+    &.active {
+      font-weight: 700;
+      border-bottom: 4rpx solid red;
     }
+  }
 }
 </style>
