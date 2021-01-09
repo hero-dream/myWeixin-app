@@ -5,9 +5,8 @@
       <GoodsTab :tabData="tabData"></GoodsTab>
     </view>
     <Gooditem v-for="item in goods" :key="item.index" :item="item"></Gooditem>
-    
+    <view class="text" v-if="hasMore === false"> -- 没有更多啦 -- </view>
   </view>
- 
 </template>
 
 <script>
@@ -31,11 +30,11 @@ export default {
     };
   },
   onLoad({ cid }) {
-    this.cid = cid ||999;
+    this.cid = cid || 999;
     this.getGoodsList();
   },
   onReachBottom() {
-    if(this.hasMore === true) {
+    if (this.hasMore === true) {
       console.log("触底了");
       this.pagenum++; //页码加1
       this.getGoodsList();
@@ -55,7 +54,7 @@ export default {
           // this.goods = res.data.message;
           const { goods, total } = res.data.message;
           this.goods = [...this.goods, ...goods]; //...为展开运算符    this.goods为旧的数据，goods为新的数据
-          this.total=total
+          this.total = total;
           if (total === this.goods.length) {
             // 当总长度等于当前的页数，会触发
             this.hasMore = false;
@@ -70,6 +69,13 @@ export default {
 .content {
   .goodsTab {
     margin: 90rpx 0 0 0;
+  }
+  .text {
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(77,178,167);
   }
 }
 </style>
