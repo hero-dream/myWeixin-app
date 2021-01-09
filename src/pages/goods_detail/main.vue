@@ -3,7 +3,7 @@
 
     <view class="content_swiper" >
       <swiper class="swiper" circular :indicator-dots="indicatorDots" indicator-active-color="#2dc2da" >
-        <swiper-item  v-for="item in pics" :key="item.pics_id">
+        <swiper-item class="swiper"  v-for="item in pics" :key="item.pics_id">
    <image class="item_image" :src="item.pics_big_url" mode="aspectFill"/>
         </swiper-item>
       </swiper>
@@ -42,14 +42,12 @@ this.pics=pics
 .content {
   .content_swiper {
 display: flex;
-  .swiper{
+  .swiper,
+   .item_image{
     width: 100%;
-    height: 500rpx;
+    height: 750rpx;
   }
-  .item_image{
-    width: 100%;
-    height: 500rpx;
-  }
+ 
     
   }
 }
