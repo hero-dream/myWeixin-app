@@ -2,7 +2,7 @@
   <view class="content">
     <navigator hover-class="none" :url="`/pages/goods_detail/main?goods_id=${item.goods_id}`" class="goodsList">
       <view class="goodsLeft">
-        <image lazy-load  class="images" :src="item.goods_big_logo" mode="aspectFit" />
+        <image lazy-load  class="images" :src="item.goods_small_logo" mode="aspectFit" />
       </view>
       <view class="goodRight">
         <view class="name">{{ item.goods_name }}</view>
