@@ -131,7 +131,11 @@ export default {
       } else {
         cartList[index].goods_count++;
       }
-
+wx.showToast({
+  title: '加入成功',
+  duration: 1000,
+  mask:true
+})
       uni.setStorageSync("cartList", cartList);
     },
   },
