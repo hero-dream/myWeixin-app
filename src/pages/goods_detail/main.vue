@@ -21,9 +21,14 @@
         </swiper-item>
       </swiper>
     </view>
-
+<view class="prices">
     <view class="goods_price">
       {{ goods_price }}
+    </view>
+ 
+    <view class="iconfont icon-zhuanfa"></view>
+    <view class="iconfont icon-shoucang"></view>
+
     </view>
     <view class="goods_name">
       {{ goods_name }}
@@ -107,20 +112,35 @@ export default {
       height: 750rpx;
     }
   }
-  .goods_price {
-    width: 50rpx;
+  .prices{
+display: flex;
+  width: 50rpx;
     height: 100rpx;
-    text-align: center;
     line-height: 100rpx;
+  .goods_price {
+  
     color: red;
     font-weight: 700;
     font-size: 36rpx;
-    padding: 0 20rpx;
+    padding: 0 490rpx 0 20rpx;
     &::before {
       content: "￥";
       font-size: 25rpx;
       color: red;
     }
+    }
+  
+    .icon-shoucang
+   {
+      font-size: 50rpx;
+      color: #707070;
+      padding: 0 20rpx ;
+    }
+     .icon-zhuanfa{
+        font-size: 40rpx;
+      color: #707070;
+      padding: 0 20rpx ;
+      }
   }
   .goods_name {
     padding: 0 20rpx 20rpx 20rpx;
