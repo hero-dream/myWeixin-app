@@ -43,11 +43,12 @@
           <view class="iconfont icon-kefu"
             ><text class="text">联系客服</text></view
           >
+       
           <view class="iconfont icon-gouwuche1"
             ><text class="text">购物车</text></view
           >
         </view>
-        <button class="cat">加入购物车</button>
+        <button class="car" @tap="addCartMessage">加入购物车</button>
         <button class="buy">立即购买</button>
       </view>
     </view>
@@ -65,6 +66,7 @@ export default {
       goods_price: "",
       goods_introduce: "",
       goods_name: "",
+      goods_small_logo:""
     };
   },
 
@@ -79,10 +81,12 @@ export default {
         //const为常量，不能重新赋值，let可以
         pics,
         goods_price,
+          goods_small_logo,
         goods_introduce,
         goods_name,
       } = res.data.message;
       this.pics = pics;
+    
       const { system } = uni.getSystemInfoSync(); //获取版本信息
       console.log(system);
       const isIos = system.toLowerCase().includes("ios"); //toLowerCase将字母转为小写，includes是否包含
@@ -96,6 +100,7 @@ export default {
         '<img class="introduce_img"'
       );
       this.goods_name = goods_name;
+        this.goods_small_logo= goods_small_logo;
       console.log(res.data.message);
     },
     // 图片放大功能
@@ -106,6 +111,20 @@ export default {
         current: index, // 当前显示图片的http链接
         urls, // 需要预览的图片http链接列表
       });
+    },
+    // 点击加入购物车
+    addCartMessage(){
+ const cartList =[]
+ uni.getStorageSync('cartList')
+ cartList.push({
+    goods_id:this.goods_id,
+    goods_name:this.goods_name,
+    goods_price:this.goods_price,
+    goods_small_logo:this.goods_small_logo,
+    goods_count:1, //数量
+goods_state:true //状态
+ }),
+ uni.setStorageSync('cartList', cartList)
     },
   },
 };
@@ -196,7 +215,7 @@ export default {
         }
       }
     }
-    .cat {
+    .car {
       width: 196rpx;
       height: 60rpx;
       border-radius: 30rpx;
