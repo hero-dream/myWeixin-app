@@ -22,9 +22,10 @@ export const homeFloordata = () => {
     })
 }   
 // 商品详情
-export const getDetail = () => {
+export const getDetail = (data) => {
     return request({
         method: 'get',
-        url: '/goods/detail'
+        url: '/goods/detail',
+        data
     })
 } 
