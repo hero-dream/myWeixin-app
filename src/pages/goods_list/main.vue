@@ -30,7 +30,7 @@ export default {
     };
   },
   onLoad({ cid }) {
-    this.cid = cid || 999;
+    this.cid = cid || 1102;
     this.getGoodsList();
   },
   onReachBottom() {
