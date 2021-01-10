@@ -72,14 +72,20 @@ export default {
   methods: {
     async getDetail() {
       const res = await getDetail({ goods_id: this.goods_id });
-      const {
+     let {
+       //const为常量，不能重新赋值，let可以
         pics,
         goods_price,
         goods_introduce,
         goods_name,
       } = res.data.message;
       this.pics = pics;
-
+ const {system} = uni.getSystemInfoSync(); //获取版本信息
+ console.log(system);
+ const isIos =system.toLowerCase().includes('ios') //toLowerCase将字母转为小写，includes是否包含
+if(isIos){
+  goods_introduce =goods_introduce.replace(/webp/g,'jpg') //当机型为ios时webp转为jpg，因为ios系统不支持webp模式
+}
       this.goods_price = goods_price;
       // replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串
       this.goods_introduce = goods_introduce.replace(
