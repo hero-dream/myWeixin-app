@@ -33,6 +33,16 @@
       <view class="text">图片详情</view>
       <rich-text :nodes="goods_introduce"></rich-text>
     </view>
+    <view class="bottom">
+      <view class="buttonList">
+        <view class="iconfonts">
+      <view class="iconfont icon-kefu"><text class="text">联系客服</text></view>
+        <view class="iconfont icon-gouwuche1"><text class="text">购物车</text></view>
+        </view>
+        <button class="cat">加入购物车</button>
+        <button class="buy">立即购买</button>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -67,10 +77,12 @@ export default {
 
       this.goods_price = goods_price;
       // replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串
-      this.goods_introduce = goods_introduce.replace(/<img/g,'<img class="introduce_img"');
+      this.goods_introduce = goods_introduce.replace(
+        /<img/g,
+        '<img class="introduce_img"'
+      );
       this.goods_name = goods_name;
       console.log(res.data.message);
-
     },
     // 图片放大功能
     swiperImg(index) {
@@ -127,8 +139,58 @@ export default {
       padding: 20rpx 0;
     }
   }
-  .introduce_img{
+  .introduce_img {
     display: block;
+  }
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 94rpx;
+    background-color: #fff;
+
+    .buttonList {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 20rpx 0;
+    }
+.iconfonts{
+display: flex;
+justify-content: space-evenly;
+.icon-kefu,
+.icon-gouwuche1
+{
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .text{
+    font-size: 23rpx;
+  }
+}
+}
+    .cat {
+      width: 196rpx;
+      height: 60rpx;
+      border-radius: 30rpx;
+      background-color: #fcaa23;
+      color: #fff;
+      font-size: 26rpx;
+      text-align: center;
+      line-height: 60rpx;
+    }
+
+    .buy {
+      width: 196rpx;
+      height: 60rpx;
+      border-radius: 30rpx;
+      background-color: red;
+      color: #fff;
+      font-size: 26rpx;
+      text-align: center;
+      line-height: 60rpx;
+    }
   }
 }
 </style>
