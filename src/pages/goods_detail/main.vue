@@ -84,6 +84,7 @@ export default {
         goods_small_logo,
         goods_introduce,
         goods_name,
+      
       } = res.data.message;
       this.pics = pics;
 
@@ -116,7 +117,7 @@ export default {
     addCartMessage() {
       const cartList = uni.getStorageSync("cartList") || [];
       const index = cartList.findIndex(
-        (item) => item.goods_id === this.goods_id
+        item => item.goods_id === this.goods_id
       );
       //  因为findindex失败时为-1，说明是不是同一个物品
       if (index === -1) {
@@ -126,7 +127,7 @@ export default {
           goods_price: this.goods_price,
           goods_small_logo: this.goods_small_logo,
           goods_count: 1, //数量
-          goods_state: true, //状态
+          goods_selected: true, //状态
         });
       } else {
         cartList[index].goods_count++;
