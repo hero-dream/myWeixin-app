@@ -2,9 +2,9 @@
   <view>
 
     <view class="content">
-      <view class="content_lists"  v-for="item in cartList" :key="item.goods_id">
+      <view class="content_lists"  v-for="(item,index) in cartList" :key="item.goods_id">
       <view class="content_left">
-        <radio class="content_left_radio" checked="true" color="#e21918" />
+        <radio @tap="getRadio(index)" class="content_left_radio" :checked="item.goods_selected" color="#e21918" />
       </view>
       <view class="content_right">
         <GoodItem class="GoodItem" :item="item"></GoodItem>
@@ -16,9 +16,11 @@
 
       </view>
     </view>
+    
+    </view>
     <view class="bottom">
       <view class="bottom-left">
-      <radio class="content_left_radio" checked="true" color="#e21918" />
+      <radio class="content_left_radio" :checked="item.goods_selected" color="#e21918" />
       <view class="text">全选</view>
       <view class="all">合计:</view>
       <view class="price">3999</view>
@@ -26,7 +28,6 @@
       <view class="bottom-right">
         <view class="count">去结算(12)</view>
       </view>
-    </view>
     </view>
   </view>
 </template>
@@ -45,14 +46,21 @@ export default {
     // 因为tabBar只加载一次，用onlade不合适
     this.cartList = uni.getStorageSync("cartList");
   },
+  methods:{
+    getRadio(index){
+//   const index =this. cartList.findIndex((item) => item.goods_id === this.goods_id);
+ this.cartList[index].goods_selected=! this.cartList[index].goods_selected
+    }
+  }
 };
 </script>
 
 <style lang="less">
 .content {
- 
+     margin: 0 0 83rpx 0;
   .content_lists {
     display: flex;
+
     .content_left {
       padding: 0 0 0 20rpx;
       display: flex;
@@ -89,6 +97,8 @@ justify-content: center;
 }
     }
   }
+
+}
   .bottom {
     width: 100%;
     height: 83rpx;
@@ -147,6 +157,5 @@ padding: 0 20rpx ;
 
     }
   }
-}
 }
 </style>
