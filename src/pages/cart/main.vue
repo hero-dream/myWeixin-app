@@ -25,7 +25,7 @@
       </view>
 
     </view>
-    <view class="bottom">
+    <view class="bottom" v-if="cartList.length">
       <view class="bottom-left">
         <radio class="content_left_radio"  color="#e21918" />
         <view class="text">全选</view>
@@ -36,7 +36,7 @@
         <view class="count">去结算({{allCount}})</view>
       </view>
     </view>
-     <view class="empty">
+     <view class="empty" v-if="cartList.length===0">
         <image class="empty_img" src="../../static/空购物车.png" mode="aspectFit" />
         <navigator class="empty_button" url="/pages/index/main" hover-class="none" open-type="switchTab" >天啊... 去购物吧</navigator>
       </view>
