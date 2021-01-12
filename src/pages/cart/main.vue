@@ -45,14 +45,26 @@ export default {
   components: { GoodItem },
   data() {
     return {
-      cartList: "",
+      cartList: [], //数组
     };
+  },
+  computed: {
+    allArice()  {
+      let allArice = 0;
+      this.cartList.forEach((item) => {
+        if (item.goods_selected) {
+          allArice += item.goods_price * item.goods_count;
+        }
+      });
+      return allArice;
+    },
+    
   },
   onShow() {
     // 因为tabBar只加载一次，用onlade不合适
     this.cartList = uni.getStorageSync("cartList");
   },
- 
+
   methods: {
     getRadio(goods_id) {
         const index =this.cartList.findIndex((item) => item.goods_id ===goods_id);
