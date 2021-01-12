@@ -1,7 +1,11 @@
 <template>
   <view>
     <view class="content">
-      <view class="content_lists" v-for="item in cartList" :key="item.goods_id">
+     
+      <view  class="content_lists"
+        v-for="item in cartList"
+        :key="item.goods_id"
+      >
         <view class="content_left">
           <radio
             @tap="getRadio(item.goods_id)"
@@ -13,44 +17,29 @@
         <view class="content_right">
           <GoodItem class="GoodItem" :item="item"></GoodItem>
           <view class="operation">
-            <view
-              @tap="changeTime(item.goods_id, -1)"
-              class="iconfont icon-53"
-            ></view>
+            <view @tap="changeTime(item.goods_id,-1)" class="iconfont icon-53"></view>
             <text class="text">{{ item.goods_count }}</text>
-            <view
-              @tap="changeTime(item.gooods_id, +1)"
-              class="iconfont icon-54"
-            ></view>
+            <view @tap="changeTime(item.goods_id,1)" class="iconfont icon-54"></view>
           </view>
         </view>
       </view>
+
     </view>
     <view class="bottom" v-if="cartList.length">
       <view class="bottom-left">
-        <radio class="content_left_radio" color="#e21918" />
+        <radio class="content_left_radio"  color="#e21918" />
         <view class="text">全选</view>
         <view class="all">合计:</view>
         <view class="price">{{ allArice }}元</view>
       </view>
       <view class="bottom-right">
-        <view class="count">去结算({{ allCount }})</view>
+        <view class="count">去结算({{allCount}})</view>
       </view>
     </view>
-    <view class="empty" v-if="cartList.length === 0">
-      <image
-        class="empty_img"
-        src="../../static/空购物车.png"
-        mode="aspectFit"
-      />
-      <navigator
-        class="empty_button"
-        url="/pages/index/main"
-        hover-class="none"
-        open-type="switchTab"
-        >天啊... 去购物吧</navigator
-      >
-    </view>
+     <view class="empty" v-if="cartList.length===0">
+        <image class="empty_img" src="../../static/空购物车.png" mode="aspectFit" />
+        <navigator class="empty_button" url="/pages/index/main" hover-class="none" open-type="switchTab" >天啊... 去购物吧</navigator>
+      </view>
   </view>
 </template>
 
@@ -65,7 +54,7 @@ export default {
     };
   },
   computed: {
-    allArice() {
+    allArice()  {
       let allArice = 0;
       this.cartList.forEach((item) => {
         if (item.goods_selected) {
@@ -74,15 +63,16 @@ export default {
       });
       return allArice;
     },
-    allCount() {
-      let allcount = 0;
-      this.cartList.forEach((item) => {
-        if (item.goods_selected) {
-          allcount += item.goods_count;
+    allCount(){
+      let allcount =0;
+      this.cartList.forEach((item)=>{
+        if(item.goods_selected){
+          allcount +=item.goods_count
         }
-      });
-      return allcount;
-    },
+      })
+      return allcount
+    }
+    
   },
   onShow() {
     // 因为tabBar只加载一次，用onlade不合适
@@ -91,33 +81,31 @@ export default {
 
   methods: {
     getRadio(goods_id) {
-      const index = this.cartList.findIndex(
-        (item) => item.goods_id === goods_id
-      );
+        const index =this.cartList.findIndex((item) => item.goods_id ===goods_id);
       this.cartList[index].goods_selected = !this.cartList[index]
         .goods_selected;
     },
-    changeTime(goods_id, number) {
-      const index = this.cartList.findIndex(
-        (item) => item.goods_id === goods_id
-      );
+    changeTime(goods_id,number){
+     const index =this.cartList.findIndex((item) => item.goods_id ===goods_id);
 
-      if (number === -1 && this.cartList[index].goods_count === 1) {
+      if(number ===-1 && this.cartList[index].goods_count===1){
         uni.showModal({
-          content: "是否要删除该商品",
-          confirmText: "删除",
-          confirmColor: "#ccc",
-          success: (res) => {
-            if (res.confirm) {
-              this.cartList.splice(index, 1);
-            }
-          },
-        });
-      } else {
-        this.cartList[index].goods_count += number;
+  content: '是否要删除该商品',
+confirmText:'删除',
+confirmColor:"#ccc",
+  success :(res)=> {
+    if (res.confirm) {
+      this.cartList.splice(index,1)
+    } 
+  }
+})
+      }else{
+   this.cartList[index].goods_count += number;
       }
-    },
+    }
   },
+  
+
 };
 </script>
 
@@ -217,14 +205,17 @@ export default {
   }
 }
 .empty {
+ 
   margin: 200rpx 0 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
   .empty_img {
     max-width: 400rpx;
-    max-height: 400rpx;
+   max-height: 400rpx;
+   
+
   }
 
   .empty_button {
@@ -237,6 +228,8 @@ export default {
     line-height: 50rpx;
     text-align: center;
     font-size: 26rpx;
+
+
   }
 }
 </style>
