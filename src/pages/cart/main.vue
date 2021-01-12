@@ -1,8 +1,8 @@
 <template>
   <view>
     <view class="content">
-      <view
-        class="content_lists"
+     
+      <view  class="content_lists"
         v-for="item in cartList"
         :key="item.goods_id"
       >
@@ -23,6 +23,7 @@
           </view>
         </view>
       </view>
+
     </view>
     <view class="bottom">
       <view class="bottom-left">
@@ -35,6 +36,10 @@
         <view class="count">去结算({{allCount}})</view>
       </view>
     </view>
+     <view class="empty">
+        <image class="empty_img" src="../../static/空购物车.png" mode="aspectFit" />
+        <navigator class="empty_button" url="/pages/index/main" hover-class="none" open-type="switchTab" >天啊... 去购物吧</navigator>
+      </view>
   </view>
 </template>
 
@@ -179,6 +184,34 @@ export default {
       background-color: red;
       border-radius: 52rpx;
     }
+  }
+}
+.empty {
+ 
+  margin: 200rpx 0 0 0;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+  .empty_img {
+    max-width: 400rpx;
+   max-height: 400rpx;
+   
+
+  }
+
+  .empty_button {
+    margin: 20rpx 0 0 0;
+    width: 300rpx;
+    height: 50rpx;
+    color: #fff;
+    background-color: red;
+    border-radius: 25rpx;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 26rpx;
+
+
   }
 }
 </style>
