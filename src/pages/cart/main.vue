@@ -23,7 +23,7 @@
       <radio class="content_left_radio" :checked="item.goods_selected" color="#e21918" />
       <view class="text">全选</view>
       <view class="all">合计:</view>
-      <view class="price">3999</view>
+      <view class="price">{{allArice}}</view>
       </view>
       <view class="bottom-right">
         <view class="count">去结算(12)</view>
@@ -46,6 +46,18 @@ export default {
     // 因为tabBar只加载一次，用onlade不合适
     this.cartList = uni.getStorageSync("cartList");
   },
+  computed:{
+   allArice(){
+     let allArice=0
+     this.cartList.forEach(item => {
+     if(item.goods_selected){
+allArice +=item.goods_price * item.goods_count
+     }
+      });
+     return allArice
+   }
+  },
+
   methods:{
     getRadio(index){
 //   const index =this. cartList.findIndex((item) => item.goods_id === this.goods_id);
