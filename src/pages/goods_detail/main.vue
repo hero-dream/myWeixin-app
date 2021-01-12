@@ -44,8 +44,9 @@
             ><text class="text">联系客服</text></view
           >
 
-          <view class="iconfont icon-gouwuche1"
-            ><text class="text">购物车</text></view
+          <navigator hover-class="none" open-type="switchTab" url="/pages/cart/main" class="iconfont icon-gouwuche1"
+            ><text class="text">购物车</text>
+            </navigator
           >
         </view>
         <button class="car" @tap="addCartMessage">加入购物车</button>
