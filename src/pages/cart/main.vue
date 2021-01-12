@@ -32,7 +32,7 @@
         <view class="price">{{ allArice }}元</view>
       </view>
       <view class="bottom-right">
-        <view class="count">去结算(12)</view>
+        <view class="count">去结算({{allCount}})</view>
       </view>
     </view>
   </view>
@@ -58,6 +58,15 @@ export default {
       });
       return allArice;
     },
+    allCount(){
+      let allcount =0;
+      this.cartList.forEach((item)=>{
+        if(item.goods_selected){
+          allcount +=item.goods_count
+        }
+      })
+      return allcount
+    }
     
   },
   onShow() {
