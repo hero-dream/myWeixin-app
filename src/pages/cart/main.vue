@@ -8,8 +8,26 @@
       </view>
       <view class="content_right">
         <GoodItem class="GoodItem" :item="item"></GoodItem>
+        <view class="operation">
+          <view class="iconfont icon-53"></view>
+          <text class="text">{{item.goods_count}}</text>
+            <view class="iconfont icon-54"></view>
+        </view>
+
       </view>
-    </view></view>
+    </view>
+    <view class="bottom">
+      <view class="bottom-left">
+      <radio class="content_left_radio" checked="true" color="#e21918" />
+      <view class="text">全选</view>
+      <view class="all">合计:</view>
+      <view class="price">3999</view>
+      </view>
+      <view class="bottom-right">
+        <view class="count">去结算(12)</view>
+      </view>
+    </view>
+    </view>
   </view>
 </template>
 
@@ -52,12 +70,83 @@ justify-content: center;
     }
 
     .content_right {
-      .GoodItem {
-        width: 628rpx;
-        // padding: 0 10rpx 0 0 ;
-
-      }
+      display: flex;
+      position: relative;
+      .operation {
+        
+        position: absolute;
+        right: 30rpx;
+        bottom: 30rpx;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  .iconfont {
+    width:32 rpx;
+    height: 32rpx;
+    padding:0 20rpx ;
+  }
+}
     }
   }
+  .bottom {
+    width: 100%;
+    height: 83rpx;
+    background-color: #fff;
+    border-top: #ccc solid 1rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+  
+  .bottom-left {
+    flex: 1;
+    display: flex;
+// justify-content: center;
+align-items: center;
+    .content_left_radio {
+      padding: 0 20rpx 0 30rpx ;
+      }
+      .text {
+      
+        color: #bcbcbc;
+        font-size: 21rpx;
+      }
+
+      .all {
+        font-size: 26rpx;
+padding: 0 20rpx ;
+      }
+      .price {
+        color: red;
+        font-weight: 700;
+        &::before{
+          content: "￥";
+        font-size: 25rpx;
+        color: red;
+
+        }
+      
+    }
+  }
+
+  .bottom-right {
+     padding: 0 30rpx 0 0;
+    .count {
+      color: #fff;
+      font-size: 21rpx;
+      line-height: 52rpx;
+      text-align: center;
+      width: 150rpx;
+      height: 52rpx;
+      background-color: red;
+      border-radius: 52rpx;
+     
+
+    }
+  }
+}
 }
 </style>
