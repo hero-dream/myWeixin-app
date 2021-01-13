@@ -1,6 +1,11 @@
 <template>
   <view>
-    <view class="user_head">
+    <view v-if="userInfo.avatarUrl"  class="user_head">
+   <image class="user_bj" :src="userInfo.avatarUrl" mode="aspectFill" />
+  <image class="user_avatar" :src="userInfo.avatarUrl" mode="" />
+  <view class="name">{{userInfo.nickName}}</view>
+    </view>
+    <view v-else class="user_head">
       <button
         class="button"
         type="warn"
@@ -16,6 +21,17 @@
 <script>
 import { getWxlogin } from "@/api";
 export default {
+  data(){
+   return{ 
+     userInfo:{}
+   }
+  },
+
+  onLoad(){
+ const userInfo= uni.getStorageSync('userInfo')
+ console.log(userInfo);
+ this.userInfo=userInfo;
+  },
   methods: {
     async getuserInfoData(e) {
       console.log(e);
@@ -56,13 +72,41 @@ export default {
 .user_head {
   height: 350rpx;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+    position: relative;
   .button {
     width: 352rpx;
     height: 88rpx;
     color: #fff;
     font-size: 36rpx;
   }
+ 
+ 
+  .user_bj {
+  width: 120%;
+  height: 120%;
+
+
+    position: absolute;
+ filter:blur(35rpx);
+z-index: -1;
+
+  }
+
+  .user_avatar {
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 50%;
+  }
+
+  .name {
+    margin: 20rpx 0 0 0;
+    color: #fff;
+
+  }
+
 }
 </style>
