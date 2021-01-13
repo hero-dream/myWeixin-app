@@ -1,40 +1,53 @@
 <template>
   <view>
     <view class="user_head">
-      <button class="button" type="warn" open-type="getUserInfo" @getuserinfo="getuserInfoData">请登录</button>
+      <button
+        class="button"
+        type="warn"
+        open-type="getUserInfo"
+        @getuserinfo="getuserInfoData"
+      >
+        请登录
+      </button>
     </view>
   </view>
 </template>
 
 <script>
+import { getWxlogin } from "@/api";
 export default {
-  methods:{
-  async  getuserInfoData(e){
+  methods: {
+    async getuserInfoData(e) {
       console.log(e);
-     const {signature,iv,rawData,encryptedData,userInfo}=e.detail
- const [,{code}] = await uni.login()
- console.log(code);
- 
-  //  uni.setStorageSync('userInfo', userInfo)
-    }
-  }
-
-}
+      const { signature, iv, rawData, encryptedData, userInfo } = e.detail;
+      const [, { code }] = await uni.login(); //验证码
+      //  console.log(code);
+      const res1 = await getWxlogin({
+        signature,
+        iv,
+        rawData,
+        encryptedData,
+        code,
+      });
+      console.log(res1);
+      
+      //  uni.setStorageSync('userInfo', userInfo)
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
-.user_head{
+.user_head {
   height: 350rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  .button{
+  .button {
     width: 352rpx;
     height: 88rpx;
     color: #fff;
     font-size: 36rpx;
-    
   }
-
 }
 </style>
