@@ -32,9 +32,20 @@ export default {
       console.log(res);
       const { token } = res.data.message;
       if (res.data.message) {
-        uni.setStorageSync("token", token);
+        uni.setStorageSync("token",res.data.message.token);
         uni.setStorageSync("userInfo", userInfo);
+        uni.showToast({
+          title: '登录成功',
+          duration: 1000
+        })
+      }else{
+          uni.showToast({
+          title: '登录失败',
+          icon:"error",
+          duration: 1000
+        })
       }
+
       //  uni.setStorageSync('userInfo', userInfo)
     },
   },
