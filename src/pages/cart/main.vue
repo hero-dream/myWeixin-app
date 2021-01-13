@@ -78,6 +78,14 @@ export default {
     // 因为tabBar只加载一次，用onlade不合适
     this.cartList = uni.getStorageSync("cartList");
   },
+watch:{
+  cartList:{
+  deep:true,
+  handler(val){
+     uni.setStorageSync("cartList",val)
+  }
+}
+},
 
   methods: {
     getRadio(goods_id) {
