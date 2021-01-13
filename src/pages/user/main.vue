@@ -1,14 +1,22 @@
 <template>
   <view>
     <view class="user_head">
-      <button class="button" type="warn">请登录</button>
+      <button class="button" type="warn" open-type="getUserInfo" @getuserinfo="getuserInfoData">请登录</button>
     </view>
   </view>
 </template>
 
 <script>
 export default {
- 
+  methods:{
+  async  getuserInfoData(e){
+      console.log(e);
+     const {signature,iv,rawData,encryptedData,userInfo}=e.detail
+ const res= await uni.login()
+ console.log(res);
+  //  uni.setStorageSync('userInfo', userInfo)
+    }
+  }
 
 }
 </script>
