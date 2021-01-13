@@ -22,15 +22,19 @@ export default {
       const { signature, iv, rawData, encryptedData, userInfo } = e.detail;
       const [, { code }] = await uni.login(); //验证码
       //  console.log(code);
-      const res1 = await getWxlogin({
+      const res = await getWxlogin({
         signature,
         iv,
         rawData,
         encryptedData,
         code,
       });
-      console.log(res1);
-      
+      console.log(res);
+      const { token } = res.data.message;
+      if (res.data.message) {
+        uni.setStorageSync("token", token);
+        uni.setStorageSync("userInfo", userInfo);
+      }
       //  uni.setStorageSync('userInfo', userInfo)
     },
   },
