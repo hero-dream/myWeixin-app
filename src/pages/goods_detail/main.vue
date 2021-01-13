@@ -163,7 +163,7 @@ wx.showToast({
       color: red;
       font-weight: 700;
       font-size: 36rpx;
-      padding: 0 490rpx 0 20rpx;
+      padding: 0 420rpx 0 20rpx;
       &::before {
         content: "￥";
         font-size: 25rpx;
@@ -172,7 +172,7 @@ wx.showToast({
     }
 
     .icon-shoucang {
-      font-size: 50rpx;
+      font-size: 40rpx;
       color: #707070;
       padding: 0 20rpx;
     }
