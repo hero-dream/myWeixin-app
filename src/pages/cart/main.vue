@@ -154,15 +154,16 @@ confirmColor:"#ccc",
       position: relative;
       .operation {
         position: absolute;
-        right: 0rpx;
+        right: 15rpx;
         bottom: 100rpx;
         z-index: 99;
         display: flex;
         align-items: center;
         justify-content: center;
         .iconfont {
-          width: 32 rpx;
-          height: 32rpx;
+          // width: 32 rpx;
+          // height: 32rpx;
+          font-size: 40rpx;
           padding: 0 20rpx;
         }
       }

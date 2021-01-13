@@ -15,7 +15,7 @@
       </view>
       <view class="goodRight">
         <view class="name">{{ item.goods_name }}</view>
-        <view class="price">￥{{ item.goods_price }}</view>
+        <view class="price">{{ item.goods_price }}</view>
       </view>
     </navigator>
   </view>
@@ -60,7 +60,12 @@ export default {
       .price {
         margin: 40rpx 0 0 0;
         color: red;
-        font-size: 24rpx;
+        font-size: 36rpx;
+         &::before {
+        content: "￥";
+        font-size: 25rpx;
+        color: red;
+      }
       }
     }
   }
