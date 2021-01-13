@@ -27,7 +27,7 @@
     </view>
     <view class="bottom" v-if="cartList.length">
       <view class="bottom-left">
-        <radio class="content_left_radio" @tap="allChange"  color="#e21918" />
+        <radio class="content_left_radio" :checked="allChange"  color="#e21918" />
         <view class="text">全选</view>
         <view class="all">合计:</view>
         <view class="price">{{ allArice }}元</view>
@@ -50,7 +50,7 @@ export default {
   components: { GoodItem },
   data() {
     return {
-      cartList: [], //数组
+      cartList: [{}], //数组
     };
   },
   computed: {
@@ -63,6 +63,7 @@ export default {
       });
       return allArice;
     },
+    
     allCount(){
       let allcount =0;
       this.cartList.forEach((item)=>{
@@ -71,7 +72,10 @@ export default {
         }
       })
       return allcount
-    }
+    },
+    allChange(){
+    return this.cartList.every((item)=>item.goods_selected)
+}
     
   },
   onShow() {
@@ -111,9 +115,7 @@ confirmColor:"#ccc",
    this.cartList[index].goods_count += number;
       }
     },
-    allChange(){
-      thi
-    }
+   
   },
   
 
