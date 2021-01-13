@@ -29,3 +29,12 @@ export const getDetail = (data) => {
         data
     })
 } 
+
+// 获取用户token
+export const getWxlogin = (data) => {
+    return request({
+        method: 'POST',
+        url: '/users/wxlogin',
+        data
+    })
+}
