@@ -27,7 +27,7 @@
     </view>
     <view class="bottom" v-if="cartList.length">
       <view class="bottom-left">
-        <radio class="content_left_radio" :checked="allChange"  color="#e21918" />
+        <radio class="content_left_radio" :checked="allChange" @tap="cart_allChange" color="#e21918" />
         <view class="text">全选</view>
         <view class="all">合计:</view>
         <view class="price">{{ allArice }}元</view>
@@ -115,6 +115,12 @@ confirmColor:"#ccc",
    this.cartList[index].goods_count += number;
       }
     },
+    cart_allChange(){
+      const all =!this.allChange
+      this.cartList.forEach(item=>{
+        item.goods_selected=all
+      })
+    }
    
   },
   
