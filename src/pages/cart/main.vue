@@ -27,7 +27,7 @@
     </view>
     <view class="bottom" v-if="cartList.length">
       <view class="bottom-left">
-        <radio class="content_left_radio"  color="#e21918" />
+        <radio class="content_left_radio" @tap="allChange"  color="#e21918" />
         <view class="text">全选</view>
         <view class="all">合计:</view>
         <view class="price">{{ allArice }}元</view>
@@ -110,6 +110,9 @@ confirmColor:"#ccc",
       }else{
    this.cartList[index].goods_count += number;
       }
+    },
+    allChange(){
+      thi
     }
   },
   
@@ -143,8 +146,8 @@ confirmColor:"#ccc",
       position: relative;
       .operation {
         position: absolute;
-        right: 30rpx;
-        bottom: 30rpx;
+        right: 0rpx;
+        bottom: 100rpx;
         z-index: 99;
         display: flex;
         align-items: center;
