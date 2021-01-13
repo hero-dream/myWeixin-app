@@ -12,8 +12,9 @@ export default {
   async  getuserInfoData(e){
       console.log(e);
      const {signature,iv,rawData,encryptedData,userInfo}=e.detail
- const res= await uni.login()
- console.log(res);
+ const [,{code}] = await uni.login()
+ console.log(code);
+ 
   //  uni.setStorageSync('userInfo', userInfo)
     }
   }
