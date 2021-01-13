@@ -1,5 +1,5 @@
 <template>
-  <view>授权</view>
+  <view>结算</view>
 </template>
 
 <script>

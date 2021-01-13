@@ -31,12 +31,18 @@
 				"enablePullDownRefresh":true
 			}
 	
-		}
-		,
+		},
 		{
 			"path": "pages/goods_detail/main",
 			"style": {
 				"navigationBarTitleText": "商品详情"
+			}
+		
+		},
+		{
+			"path": "pages/pay/main",
+			"style": {
+				"navigationBarTitleText": "结算页面"
 			}
 		
 		}

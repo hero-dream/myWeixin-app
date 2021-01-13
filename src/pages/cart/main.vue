@@ -33,7 +33,7 @@
         <view class="price">{{ allArice }}元</view>
       </view>
       <view class="bottom-right">
-        <view class="count">去结算({{allCount}})</view>
+        <navigator hover-class="none"  url="/pages/pay/main" class="count">去结算({{allCount}})</navigator>
       </view>
     </view>
      <view class="empty" v-if="cartList.length===0">
