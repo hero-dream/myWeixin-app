@@ -37,7 +37,7 @@
       </view>
     </view>
      <view class="empty" v-if="cartList.length===0">
-        <image class="empty_img" src="../../static/空购物车.png" mode="aspectFit" />
+        <image class="empty_img" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3334466282,826560232&fm=26&gp=0.jpg" mode="aspectFit" />
         <navigator class="empty_button" url="/pages/index/main" hover-class="none" open-type="switchTab" >天啊... 去购物吧</navigator>
       </view>
   </view>
@@ -227,11 +227,14 @@ confirmColor:"#ccc",
   }
 
   .empty_button {
-    margin: 20rpx 0 0 0;
+    margin:  0 0 0 50rpx;
     width: 300rpx;
     height: 50rpx;
     color: #fff;
     background-color: red;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
     border-radius: 25rpx;
     line-height: 50rpx;
     text-align: center;
