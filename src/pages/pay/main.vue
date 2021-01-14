@@ -1,10 +1,7 @@
 <template>
   <view>
     <view class="contenr">
-      <view class="pay_button" v-if="address.userName" @tap="chooseAddress">
-        <button class="button"><text class="text">添加地址</text></button>
-      </view>
-      <view v-else class="chooseAddress">
+      <view v-if="address.userName" class="chooseAddress">
         <view class="region">
           {{ addressAll }}
         </view>
@@ -12,6 +9,10 @@
           <text class="name">{{ address.userName }}</text>
           <text class="telNumber">{{ address.telNumber }}</text>
         </view>
+      </view>
+
+      <view class="pay_button" v-else @tap="chooseAddress">
+        <button class="button"><text class="text">添加地址</text></button>
       </view>
     </view>
   </view>
@@ -42,13 +43,16 @@ export default {
       });
     },
   },
+  onLoad() {
+    const address = uni.getStorageSync("address");
+    this.address = address;
+  },
 };
 </script>
 
 <style lang="less">
 .contenr {
   .pay_button {
-
     height: 187rpx;
     width: 710rpx;
     display: flex;
@@ -75,7 +79,7 @@ export default {
     .region {
       font-size: 30rpx;
       margin: 20rpx;
-      padding-top: 25rpx;
+      padding-top: 40rpx;
     }
 
     .message {
@@ -84,9 +88,6 @@ export default {
       color: #595959;
       .name {
         padding-right: 40rpx;
-      }
-
-      .telNumber {
       }
     }
   }
