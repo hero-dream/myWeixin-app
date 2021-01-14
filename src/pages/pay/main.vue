@@ -25,11 +25,11 @@ export default {
     };
   },
   computed: {
-  //   addressAll() {
-  //     const { provinceName, cityName, countyName, detailInfo } = this.address;
-  //     return provinceName + cityName + countyName + detailInfo;
-  //   },
-  // },
+    addressAll() {
+      const { provinceName, cityName, countyName, detailInfo } = this.address;
+      return provinceName + cityName + countyName + detailInfo;
+    },
+  },
 
   methods: {
     chooseAddress() {
