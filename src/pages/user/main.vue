@@ -23,27 +23,25 @@
     </view>
     <view class="message">
       <view class="layout">
-        <view class="left">
-      <view class="iconfont icon-kefu">
-        <text>联系客服</text>
+        <view class="left" @tap="makePhoneCall">
+          <view class="iconfont icon-kefu">
+            <text>联系客服</text>
+          </view>
         </view>
-        </view>
-           <view class="phone">400-168-120</view>
-        </view>
-         <view class="layout">
-      <view class="iconfont icon-yijianfankui" ><text>意见反馈</text></view>
-         </view>
+        <view class="phone">400-168-120</view>
+      </view>
+      <view class="layout">
+        <view class="iconfont icon-yijianfankui"><text>意见反馈</text></view>
+      </view>
       <view class="layout">
         <view class="left">
-      <view class="iconfont icon-ziyuan">
-        <text>当前版本</text>
-      </view>
-        
-      </view>
+          <view class="iconfont icon-ziyuan">
+            <text>当前版本</text>
+          </view>
+        </view>
         <view class="banben">v.4.1.1</view>
       </view>
     </view>
-   
   </view>
 </template>
 
@@ -93,6 +91,11 @@ export default {
 
       //  uni.setStorageSync('userInfo', userInfo)
     },
+    makePhoneCall() {
+      uni.makePhoneCall({
+        phoneNumber: "10001",
+      });
+    },
   },
 };
 </script>
@@ -106,7 +109,7 @@ export default {
   justify-content: center;
   overflow: hidden;
   position: relative;
- 
+
   .button {
     width: 352rpx;
     height: 88rpx;
@@ -133,66 +136,61 @@ export default {
     margin: 20rpx 0 0 0;
     color: #fff;
   }
-  
 }
-.nav{
-margin: 10rpx 15rpx 0 15rpx;
+.nav {
+  margin: 10rpx 15rpx 0 15rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 725rpx;
+  height: 144rpx;
+  background-color: #f9f9f9;
+  border-radius: 10rpx;
+  .iconfont {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    width: 725rpx;
-    height: 144rpx;
-    background-color: #f9f9f9;
-     border-radius: 10rpx;
-    .iconfont{
-      display: flex;
-      flex-direction: column;
-      align-items: center;justify-content: center;
-      font-size: 50rpx;
-     
+    justify-content: center;
+    font-size: 50rpx;
 
-text{
-  // color: #fff;
-  font-size: 26rpx;
-}
+    text {
+      // color: #fff;
+      font-size: 26rpx;
     }
   }
-  .message {
-   margin: 10rpx 10rpx 0 10rpx;
-      width: 726rpx;
-      height: 520rpx;
-   background-color: #f9f9f9;
-   border-radius: 15rpx;
+}
+.message {
+  margin: 10rpx 15rpx 0 15rpx;
+  width: 726rpx;
+  height: 520rpx;
+  background-color: #f9f9f9;
+  border-radius: 15rpx;
 
   .layout {
-
     width: 705rpx;
     height: 100rpx;
     display: flex;
     // justify-content: center;
     align-items: center;
     margin: 0 10rpx;
-   
+
     border-bottom: #e3e3e3 solid 1rpx;
-    
+
     .left {
       flex: 1;
       .icon-kefu {
         text {
-
         }
       }
 
       .phone {
-            margin: 0 10rpx;
-
+        margin: 0 10rpx;
       }
     }
   }
 
   .icon-yijianfankui {
     text {
-
     }
   }
 }
