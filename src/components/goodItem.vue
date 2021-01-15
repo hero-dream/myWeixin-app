@@ -9,7 +9,7 @@
         <image
           lazy-load
           class="images"
-          :src="item.goods_small_logo"
+          :src="item.goods_small_logo ||'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_pic%2F01%2F47%2F02%2F6357433910e736f.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613293863&t=4330ad82e535233fdf87a50fdf36289e'"
           mode="aspectFit"
         />
       </view>
