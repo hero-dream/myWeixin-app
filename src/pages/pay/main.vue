@@ -27,8 +27,8 @@
         <view class="price">{{ allArice }}元</view>
       </view>
       <view class="bottom-right">
-        <navigator hover-class="none" url="/pages/pay/main" class="count"
-          >去支付({{ allCount }})</navigator
+        <view @tap="getPay" class="count"
+          >去支付({{ allCount }})</view
         >
       </view>
     </view>
@@ -84,6 +84,13 @@ export default {
         },
       });
     },
+      getPay(){
+    uni.showToast({
+      title: '很抱歉,该功能在升级中...',
+      icon:'none',
+      duration: 2000,
+    });
+  },
   },
   onLoad() {
     const address = uni.getStorageSync("address");
@@ -145,11 +152,6 @@ export default {
   .text {
 padding: 17rpx;
 font-size: 26rpx;
-  }
-
-  .list {
-    
-  border-bottom: 1rpx solid red;
   }
 }
 
