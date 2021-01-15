@@ -16,8 +16,10 @@
       </view>
       <view class="shopList">
         <view class="text">已选商品</view>
-        <view class="list">
-          <GoodItem v-for="item in cartList" :key="item.goods_id" :item="item"></GoodItem>
+        <view class="list" v-for="item in cartList" :key="item.goods_id">
+          <GoodItem  :item="item"></GoodItem>
+            <view class="goods_count">{{ item.goods_count }}</view>
+
         </view>
       </view>
     </view>
@@ -153,8 +155,25 @@ export default {
 padding: 17rpx;
 font-size: 26rpx;
   }
+  .list{
+  display: flex;
+      position: relative;
+      .goods_count {
+        position: absolute;
+        right: 30rpx;
+        bottom: 25rpx;
+        z-index: 99;
+        font-size: 34rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &::before{
+          content: '×';
+          font-size: 26rpx;
+        }
+        }
 }
-
+  }
 }
 .bottom {
   width: 100%;
