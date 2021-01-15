@@ -25,8 +25,9 @@
       <view class="goods_price">
         {{ goods_price }}
       </view>
-
-      <view class="iconfont icon-zhuanfa"></view>
+      <view class="open_type_wrap iconfont icon-zhuanfa">
+        <button class="open_type_button" open-type="share">转发</button>
+      </view>
       <view class="iconfont icon-shoucang"></view>
     </view>
     <view class="goods_name">
@@ -39,9 +40,12 @@
     </view>
     <view class="bottom">
       <view class="buttonList">
-        <view class="iconfonts">
-          <view class="iconfont icon-kefu"
-            ><text class="text">联系客服</text></view
+        <view class=" iconfonts">
+
+          <view class="open_type_wrap iconfont icon-kefu"
+            >
+        <button class="open_type_button" open-type="contact">联系客服</button>
+            <text class="text">联系客服</text></view
           >
 
           <navigator hover-class="none" open-type="switchTab" url="/pages/cart/main" class="iconfont icon-gouwuche1"
@@ -146,6 +150,7 @@ wx.showToast({
 
 <style lang="less">
 .content {
+ 
   .content_swiper {
     display: flex;
     .swiper,
@@ -159,6 +164,7 @@ wx.showToast({
     width: 50rpx;
     height: 100rpx;
     line-height: 100rpx;
+
     .goods_price {
       color: red;
       font-weight: 700;
@@ -174,7 +180,7 @@ wx.showToast({
     .icon-shoucang {
       font-size: 40rpx;
       color: #707070;
-      padding: 0 20rpx;
+      padding: 0 35rpx;
     }
     .icon-zhuanfa {
       font-size: 40rpx;
