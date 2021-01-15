@@ -68,7 +68,7 @@ export default {
   components: { GoodItem },
   data() {
     return {
-      cartList: [], //数组
+      cartList: [{}], //数组
     };
   },
   computed: {
