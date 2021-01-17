@@ -1,6 +1,6 @@
 <template>
 <view class="search">
-<view class="search_in">搜索</view>
+<navigator  url="/pages/search/main"  hover-class="none" class="search_in">搜索</navigator>
 </view>
 </template>
 
