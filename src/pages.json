@@ -45,7 +45,15 @@
 				"navigationBarTitleText": "支付"
 			}
 		
+		},
+		{
+			"path": "pages/search/main",
+			"style": {
+				"navigationBarTitleText": "搜索"
+			}
+		
 		}
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
